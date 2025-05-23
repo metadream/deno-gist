@@ -1,6 +1,6 @@
-# Deno-Google
+# Deno-Gist
 
-## Drive
+## GoogleDrive
 
 An easy way to access Google Drive without any external dependencies.
 
@@ -30,7 +30,7 @@ try {
 }
 ```
 
-## OAuth
+## GoogleOAuth
 
 This class is a simplification of the google oauth2 authorization flow.
 
