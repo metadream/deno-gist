@@ -40,7 +40,7 @@ export class ExpiringCache<K, V> {
         this.cache.set(key, { value, expires });
     }
 
-    ttl(key: K, ttl: number) {
+    ttl(key: K, ttl: number): boolean {
         const entry = this.cache.get(key);
         if (!entry) return false;
         entry.expires = Date.now() + ttl * 1000;

@@ -15,7 +15,7 @@ const importAesKey = async (key: string) => {
  * SHA-1 hash encryption
  * algorithm: SHA-1
  */
-export async function sha1(message: string) {
+export async function sha1(message: string): Promise<string> {
     const buffer = await crypto.subtle.digest("SHA-1", textEncode(message));
     const array = Array.from(new Uint8Array(buffer));
     const hex = array.map((b) => b.toString(16).padStart(2, "0")).join("");
@@ -27,7 +27,7 @@ export async function sha1(message: string) {
  * algorithm: AES-CBC
  * encoding: base64
  */
-export const AES = {
+export const AES: any = {
     async encrypt(plaintext: string, key: string) {
         const iv = crypto.getRandomValues(new Uint8Array(16));
         const encrypted = await crypto.subtle.encrypt(
@@ -56,7 +56,7 @@ export const AES = {
  * algorithm: RSA-OAEP
  * encoding: base64
  */
-export const RSA = {
+export const RSA: any = {
     async generateKeyPair() {
         return await crypto.subtle.generateKey({
                 name: "RSA-OAEP",
@@ -128,7 +128,7 @@ export const RSA = {
  * JWT encryption and decryption
  * algorithm: RSA-OAEP
  */
-export const JWT = {
+export const JWT: any = {
     async create(payload: Record<string, unknown>, publicKey: CryptoKey) {
         return await RSA.encrypt(JSON.stringify(payload), publicKey);
     },

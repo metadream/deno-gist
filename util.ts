@@ -36,7 +36,7 @@ export function randomBetween(a: number, b: number): number {
  * Shuffle the order of array elements
  * @param {Array} array
  */
-export function shuffle(array: Array<unknown>) {
+export function shuffle(array: Array<unknown>): unknown[] {
     return array.sort(() => Math.random() - 0.5);
 }
 
@@ -95,7 +95,7 @@ export function truncate(text: string, length: number): string {
  * Determine whether it is a plain object (the object created by {} or new Object)
  * @link https://github.com/lodash/lodash
  */
-export function isPlainObject(value: unknown) {
+export function isPlainObject(value: unknown): boolean {
     if (!value || typeof value !== "object" || Object.prototype.toString.call(value) != "[object Object]") {
         return false;
     }
@@ -268,7 +268,7 @@ export function parseDuration(s: string): number {
  * @param locale
  * @returns
  */
-export function localeCompare(aStr: string, bStr: string, locale = "zh") {
+export function localeCompare(aStr: string, bStr: string, locale = "zh"): number {
     const regExp = [
         /[\s\~\!\@\#\$\%\^\&\*\(\)\-\_\+\=\{\}\[\]\|\<\>\,\.\?\/\\]/,
         /[0-9]/, /[a-zA-Z]/, /./
@@ -329,7 +329,7 @@ export function mergeObjects(...objs: Array<any>): unknown {
  * @returns
  */
 // deno-lint-ignore ban-types
-export function mergeArrays(arr1: Array<any>, arr2: Array<any>, callback: Function) {
+export function mergeArrays(arr1: any[], arr2: any[], callback: Function): unknown[] {
     const merged: Array<any> = [];
     const clone = [...arr2];
     arr1.forEach((a1) => {
@@ -349,7 +349,7 @@ export function mergeArrays(arr1: Array<any>, arr2: Array<any>, callback: Functi
  * @param index2
  * @returns
  */
-export function swapArray(arr: unknown[], index1: number, index2: number) {
+export function swapArray(arr: unknown[], index1: number, index2: number): unknown[] {
     arr[index1] = arr.splice(index2, 1, arr[index1])[0];
     return arr;
 }

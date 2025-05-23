@@ -54,7 +54,7 @@ export class GoogleOAuth {
      * @param code
      * @returns object { refresh_token, access_token, id_token... }
      */
-    async getTokens(code: string) {
+    async getTokens(code: string): Promise<unknown> {
         const response = await fetch(OAUTH_URL + '/token', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -80,7 +80,7 @@ export class GoogleOAuth {
      * @param refresh_token
      * @returns object { access_token, expires_in }
      */
-    async getAccessToken(refresh_token: string) {
+    async getAccessToken(refresh_token: string): Promise<unknown> {
         const response = await fetch(TOKEN_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -106,7 +106,7 @@ export class GoogleOAuth {
      * @param token id_token/JWT
      * @returns object { header, payload, signature }
      */
-    decodeIdToken(token: string) {
+    decodeIdToken(token: string): any {
         if (!token) {
             throw { status: 400, message: "Undefined token" };
         }
@@ -129,7 +129,7 @@ export class GoogleOAuth {
      * @param token id_token/JWT
      * @returns
      */
-    async verifyIdToken(token: string) {
+    async verifyIdToken(token: string): Promise<unknown> {
         try {
             const decoded = this.decodeIdToken(token);
             const kid = decoded.header.kid;

@@ -28,7 +28,7 @@ export type DriveOptions = {
  *   refresh_token: "xxxxxxxxxx"
  * });
  *
- * const obj = gd.index("/path");
+ * const obj = await gd.index("/path");
  * if (obj.isFolder) {
  *   obj.list();
  * } else {
@@ -93,7 +93,7 @@ export class GoogleDrive {
      * 1. If it's a directory, return metadata and list() method
      * 2. If it's a file, return metadata and raw() method
      */
-    async index(path?: string) {
+    async index(path?: string): Promise<unknown> {
         let metadata = await this.getMetadata(path);
         if (!metadata) {
             throw { status: 404, message: "Path not found" };
