@@ -5,7 +5,7 @@
 An easy way to access Google Drive without any external dependencies.
 
 ```ts
-import { GoogleDrive } from "https://deno.land/x.google/drive.ts";
+import { GoogleDrive } from "https://deno.land/x.google/google-drive.ts";
 
 const gd = new GoogleDrive({
   client_id: "xxxxx-xxxxxxxxxxxxxx.apps.googleusercontent.com",
@@ -37,7 +37,7 @@ This class is a simplification of the google oauth2 authorization flow.
 ### 1. Create an instance
 
 ```ts
-import { GoogleOAuth } from "https://deno.land/x/google/oauth.ts";
+import { GoogleOAuth } from "https://deno.land/x/google/google-oauth.ts";
 
 const ga = new GoogleOAuth({
   client_id: "xxxxx-xxxxxxxxxxxxxx.apps.googleusercontent.com",

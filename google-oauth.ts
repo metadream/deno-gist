@@ -1,5 +1,5 @@
-import { decode as base64UrlDecode } from "https://deno.land/std@0.177.0/encoding/base64url.ts";
-import { verify } from "https://deno.land/x/djwt@v2.8/mod.ts";
+import { decodeBase64Url } from "@std/encoding";
+import { JWT } from "./crypto.ts";
 
 const OAUTH_URL = 'https://accounts.google.com/o/oauth2';
 const TOKEN_URL = 'https://www.googleapis.com/oauth2/v4/token';
@@ -115,8 +115,8 @@ export class GoogleOAuth {
             throw { status: 400, message: "Not enough or too many segment" };
         }
         return {
-            header: JSON.parse(textDecode(base64UrlDecode(segments[0]))),
-            payload: JSON.parse(textDecode(base64UrlDecode(segments[1]))), // email, sub...
+            header: JSON.parse(textDecode(decodeBase64Url(segments[0]))),
+            payload: JSON.parse(textDecode(decodeBase64Url(segments[1]))), // email, sub...
             signature: segments[2]
         }
     }
@@ -135,7 +135,7 @@ export class GoogleOAuth {
             const kid = decoded.header.kid;
             const response = await fetch(CERTS_URL);
             const cert = await response.json();
-            return await verify(token, cert[kid]);
+            return await JWT.verify(token, cert[kid]);
         } catch (e) {
             console.log(e);
         }

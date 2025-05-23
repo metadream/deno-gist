@@ -1,0 +1,10 @@
+{
+    "name": "@gist/",
+    "version": "0.1.0",
+    "license": "MIT",
+    "exports": "./mod.ts",
+    "imports": {
+        "@std/encoding": "jsr:@std/encoding@^1.0.10",
+        "@std/streams": "jsr:@std/streams@^1.0.9"
+    }
+}
